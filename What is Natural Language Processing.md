@@ -14,7 +14,7 @@ The purpose of this article is to give you a general idea of what NLP is and how
 
 The idea is that with a better understanding of the NLP you should be able to train your chatbots to be able to understand their users a lot better.
 
-There are many ways of handling each stage of the NLP processing, however, we will not go into the details of each, as we are focusing on the bigger picture.
+There are many ways of handling each stage of the NLP processing, however, we will not go into too many details, as the aim of this article is to focus on the bigger picture.
 
 ## The high-level understanding
 
