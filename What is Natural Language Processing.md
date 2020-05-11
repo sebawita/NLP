@@ -6,7 +6,7 @@ as it is spoken.
 
 In other words, NPL is the mechanism that allows chatbots — like [NativeChat](https://www.progress.com/nativechat) — to analyse what users say, extract essential information and respond with appropriate answers.
 
-For example, if the user says: *"When does your shop open?"*, the chatbot should be able to match this question to a **opening-hours** conversation, and respond with: *"The shop opens from 9AM to 5PM"*.
+For example, if the user says: *"When does your shop open?"*, the chatbot should be able to match this question to an **opening-hours** conversation, and respond with: *"The shop opens from 9 AM to 5 PM"*.
 
 ## What you are going to learn
 
@@ -14,7 +14,7 @@ The purpose of this article is to give you a general idea of what NLP is and how
 
 The idea is that with a better understanding of the NLP you should be able to train your chatbots to be able to understand their users a lot better.
 
-There are many ways of handling each stage of the NLP processing, however we will not go into the details of each, as we focusing on the bigger picture.
+There are many ways of handling each stage of the NLP processing, however, we will not go into the details of each, as we are focusing on the bigger picture.
 
 ## The high-level understanding
 
@@ -22,11 +22,11 @@ From a high-level view, Natural Language Processing works in two stages:
 
 **NLP Model training**
 
-In this stage we (as the people that train our chatbots) provide our chatbots with a list of expressions that we would like them to associate with various conversations.
+In this stage, we (as the people that train our chatbots) provide our chatbots with a list of expressions that we would like them to associate with various conversations.
 
-NLP takes all the training expressions, and creates a model, which can be used to understand what the users say.
+NLP takes all the training expressions and creates a model, which can be used to understand what the users say.
 
-> Note, the model training needs to be done up-front, before the chatbot starts interacting with the users.
+> Note, the model training needs to be done up-front before the chatbot starts interacting with the users.
 
 **Process user Input and Respond**
 
@@ -41,11 +41,11 @@ But what does that even mean?
 
 This is like creating a mental image of all the conversations that a chatbot should be aware of, together with what kind of expressions should trigger each conversation.
 
-> It is important to understand that the NLP Model is specific to the scenarios that is meant to deal with. So, a banking chatbot should be able to understand and respond to Bank related requests (like: "How can I change the limit on my credit card?"), while a shopping chatbot should be able to deal with conversation helping a happy shopper.
+> It is important to understand that the NLP Model is specific to the scenarios that it is meant to deal with. So, a banking chatbot should be able to understand and respond to Bank related requests (like: "How can I change the limit on my credit card?"), while a shopping chatbot should be able to deal with conversation helping a happy shopper.
 
 **Example**
 
-For example we could train our chatbot to deal with two conversations to allow the users to ask for the office Address or Phone number.
+For example, we could train our chatbot to deal with two conversations to allow the users to ask for the office Address or Phone number.
 
 <table border="1" width="100%">
  <tr>
@@ -91,7 +91,7 @@ Similarly, all training questions should be turned into the following tokens:
 
 The purpose of the tokens is for NLP to compare the training tokens, with the user input when they interact with the chatbot.
 
-However before that happens, NLP needs to do some further processing to the training tokens, to identify the tokens that are more or less important when a match happens.
+However, before that happens, NLP needs to do some further processing to the training tokens, to identify the tokens that are more or less important when a match happens.
 
 ### Highlighting Frequent Tokens
 
@@ -100,12 +100,12 @@ You can probably imagine that not all tokens are equally important.
 NLP highlights more valuable tokens by identifying the ones that repeat within the same conversation.
 The idea is to identify the words/punctuation marks that are commonly used to trigger a specific conversation.
 
-NLP goes through each conversation one by one, analyses the Converation Tokens, and highlights the frequent ones. However, at this stage, it doesn't compare tokens belonging to other conversations.
+NLP goes through each conversation one by one, analyses the Conversation Tokens, and highlights the frequent ones. However, at this stage, it doesn't compare tokens belonging to other conversations.
 
 **Example**
 
 For example, if we look at the training set for the Address Q&A.
-You will notice that the **(?)** is used is both expressions, however (your) and (you) shouldn't count as repeating tokens as they are not exactly the same (well... not unless you live in the North of England 🤔).
+You will notice that the **(?)** is used in both expressions, however, (your) and (you) shouldn't count as repeating tokens as they are not exactly the same (well... not unless you live in the North of England 🤔).
 
 <img src="Highlight-1.gif" height="200px">
 
@@ -118,15 +118,15 @@ You will notice that **(what)**, **(phone)** and **(?)** are used between both o
 
 ### Collision Detection
 
-Just like the frequent tokens for each conversation are highlighted as more important, NLP also identifies those tokens that keep repeating accross different conversations. This is called Collision Detection.
+Just like the frequent tokens for each conversation are highlighted as more important, NLP also identifies those tokens that keep repeating across different conversations. This is called Collision Detection.
 
 The idea is that if the token (what) is used in training for multiple conversations then you can imagine that matching that token, is not as helpful as matching a unique or a highlighted token. Therefore, we should treat it as less important.
 
-To understand this process better, it is best to think about the tokens belonging to each conversation as a set of tokens. As a result, we can display the highlighted tokens as a single token in each set. Like this:
+To understand this process better, it is best to visualise each conversation tokens as they belong to their respective set of tokens. As a result, we can display the highlighted tokens (in green) as a single token in each set. Like this:
 
 <img src="./img/set.png" height="350px">
 
-As part of the Colision Detection step, NLP looks for duplicates between all conversations sets, and marks them as colisions.
+As part of the Collision Detection step, NLP looks for duplicates between all conversations sets and marks them as collisions.
 
 **Example**
 
@@ -141,7 +141,7 @@ Following our example, we can compare the tokens on the left with the tokens on 
 Finally, we can represent the whole model in a Venn Diagram, where:
 
 - Unique (blue) and Highlighted (green) Tokens — sit in their respective sets
-- The Colision Tokens (red) — sit at the sets intersection
+- The Collision Tokens (red) — sit at the intersection of the sets
 
 
 
@@ -194,19 +194,19 @@ In another example, the user says (the grammar mistake is on purpose): *"What ar
 NLP should be able to identify the following matches:
 
 - Address Q&A conversation — 4 matched tokens
-  - 1 unique tokens
+  - 1 unique token
   - 3 penalised tokens
 - Phone Q&A conversation — 5 matched tokens
   - 2 unique tokens — with 1 highlighted token
   - 3 penalised tokens
 
-As a result the **Phone Q&A conversation** comes out as the **favourable match**.
+As a result, the **Phone Q&A conversation** comes out as the **favourable match**.
 
 <img src="./img/what-are-your-phone-number.png" height="450px">
 
 ### Scoring the Best Match
 
-The next step is to give a confidence score to the best matched conversations.
+The next step is to give a confidence score to the best-matched conversations.
 
 Without getting into the details of the confidence score calculation, NLP takes into consideration the number of:
 
@@ -221,7 +221,8 @@ All the above details are provided to the NLP Calculator, which returns a confid
 
 ### Responding to the User
 
-Finally, if the confidence score is above 65%, then this is considered a successfull match, and the chatbot responds will the appropriate answer. While any confidence score below that treshold is considered of low confidence, and the chatbot should respond with something like: *"Sorry, I don't understand"*.
+Finally, if the confidence score is above 65% — this is considered a successful match — the chatbot will respond with the appropriate answer.
+While for any confidence score below that threshold — this is considered a low confidence match — the chatbot will respond with something like: *"Sorry, I don't understand"*.
 
 **Example**
 
@@ -232,17 +233,18 @@ As a result of which the chatbot would respond with: *"14 Oak Park Drive, Bedfor
 
 ## Final word
 
-From a high-level view NLP is a fairly straightforward process — altough the devil sits in the details — which we can use to our advantage when we need train our own chatbots.
+From a high-level view, NLP is a fairly straightforward process — although the devil sits in the details — which we can use to our advantage when we need to train our own chatbots.
 
 If you want to improve your chatbots understanding of the user input, then make sure to give it more helpful training data:
 
 - help it understand which words should be considered more important, by repeating the important words
 -  if reasonably possible, avoid expressions that have too many penalised words
 
-But also, you should be able to understand, when and why  adding a new conversations to the training set, could potentially make previously high confidence conversations start giving lower confidence scores.
+But also, you should be able to understand, when and why adding a new conversation to the training set, could potentially make previously high confidence conversations start giving lower confidence scores.
 
 ### Give us a shout
 
 Would you be interested in a post on Tips & Tricks for training NLP models?
 
 Let us know what you thought about this article, or send us any questions in the comment below.
+
